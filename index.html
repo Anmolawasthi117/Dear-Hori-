@@ -48,7 +48,49 @@
 <p class="p1">Drag the papers to move!</p>
 </div>
 <!-- partial -->
-  <script  src="./mobile.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Script Loading</title>
+</head>
+<body>
+
+<!-- Your HTML content goes here -->
+
+<script>
+    function loadScript() {
+        var scriptElement = document.createElement('script');
+        scriptElement.src = determineScriptToLoad();
+        document.head.appendChild(scriptElement);
+    }
+
+    function determineScriptToLoad() {
+        // Adjust this condition based on your responsive criteria
+        if (window.innerWidth < 768) {
+            return 'mobile.js'; // Load mobile script
+        } else {
+            return 'script.js'; // Load desktop script
+        }
+    }
+
+    // Initial script loading
+    loadScript();
+
+    // Update script on window resize
+    window.addEventListener('resize', function() {
+        // Remove the current script
+        document.head.removeChild(document.head.lastChild);
+
+        // Load the updated script
+        loadScript();
+    });
+</script>
+
+</body>
+</html>
+
 
 </body>
 </html>
